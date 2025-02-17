@@ -28,7 +28,7 @@ def main():
     dump = pgdump.dump(args.url)
     if args.driver=='s3':
         client = boto3.client('s3')
-        storage.se(client,dump.stdout, args.destination, 'example.sql')
+        storage.s3(client,dump.stdout, args.destination, 'example.sql')
     else:
         outfile = open(args.destination, 'wb')
-        storage.loacl(dump.stdout, outfile)
+        storage.local(dump.stdout, outfile)
